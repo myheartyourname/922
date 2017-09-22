@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.circle{
+			width: 30px;
+			height: 30px;
+			background: red;
+			border-radius: 50%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			transition: all 1s;
+		}
+		.yuan{
+			width: 30px;
+			height: 30px;
+			/* background: red; */
+			border-radius: 50%;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transition: all ease 1s;
+		}
+	</style>
+</head>
+<body>
+	<box class="yuan"></box>
+	<script>
+		window.onload=function(){
+			let yuan=document.querySelector('box.yuan');
+			pointer(100,90);
+			function pointer(r,num){
+				// let r=100;
+			 //    let num=16;
+			    for (let i=0;i<num;i++){
+			    	if (i%30==0){
+			    		r+=100;
+			    	}
+			    	let divs=document.createElement('div');
+			        divs.className='circle';
+			    	let rad=(i*(360/30)*Math.PI)/180;
+			    	let lefts=r*Math.cos(rad);
+			    	let tops=r*Math.sin(rad);
+			    	// divs.style.left=`${lefts}px`;
+			    	// divs.style.top=`${tops}px`;
+			    	divs.style.background=color();
+			    	yuan.appendChild(divs);
+			    	setTimeout(function(){
+			    		// divs.style.transitionDelay=`${Math.random()*500}ms`;
+			        	divs.style.transitionDelay=`${i*100}ms`;
+			        	divs.style.left=`${lefts}px`;
+			            divs.style.top=`${tops}px`;
+			    	},5)
+			    }
+			}
+			function color(){
+                let str='rgb('
+                for (let i=0;i<3;i++){
+                    let num=Math.floor(Math.random()*256);
+                    str+=num+',';
+                }
+                str=str.slice(0,-1);
+                str+=')';
+                return str;
+			}
+		}
+		alert('我来给你展示一下高端操作');
+	</script>
+</body>
+</html>

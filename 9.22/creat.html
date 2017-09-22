@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.circle{
+			width: 50px;
+			height: 50px;
+			background: yellow;
+			border-radius: 50%;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transition: all ease 1000ms;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div class="box"></div> -->
+	<script>
+		window.onload=function(){
+			// let divs=document.createElement('div');
+			random();
+			function random(){
+				for (let i=0;i<30;i++){
+				    let divs=document.createElement('div');
+				    divs.className='circle';
+			        let lefts=Math.floor((innerWidth-150)*Math.random());
+			        let tops=Math.floor((innerHeight-150)*Math.random());
+			        let widths=Math.floor(Math.random()*70+30);
+			        // divs.style.left=`${lefts}px`;
+			        // divs.style.top=`${tops}px`;
+			        divs.style.width=`${widths}px`;
+			        divs.style.height=`${widths}px`;
+                    divs.style.background=color();
+			        document.body.appendChild(divs);
+			        setTimeout(function(){
+			        	divs.style.transitionDelay=`${Math.random()*1000}ms`;
+			        	// divs.style.transitionDelay=`${i*20}ms`;
+			        	divs.style.left=`${lefts}px`;
+			            divs.style.top=`${tops}px`;
+			        },5);
+			   }
+			}
+			
+			function color(){
+                    let str='rgb('
+                    for (let i=0;i<3;i++){
+                    	let num=Math.floor(Math.random()*256);
+                    	str+=num+',';
+                    }
+                    str=str.slice(0,-1);
+                    str+=')';
+                    return str;
+			    }
+		}
+	</script>
+</body>
+</html>

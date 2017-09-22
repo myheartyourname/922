@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box{
+			width: 500px;
+			height: 500px;
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h1>smile</h1>
+		<p>p</p>
+		<span>span</span>
+	</div>
+	<script>
+		window.onload=function(){
+			let box=document.querySelector('[class]');
+            let divs=document.createElement('div');
+            let p=document.querySelector('p');
+            let h1=document.querySelector('h1');
+            let span=document.querySelector('span');
+            divs.style.cssText=`
+                width:200px;
+                height:200px;
+                background:red`;
+            // box.appendChild(divs);
+            // box.insertBefore(divs,span);
+            // h1.insertAfter(divs);
+            // box.prependChild(divs);
+            // divs.appendTo(box);
+            // divs.prependTo(box);
+            box.empty(box);
+		}
+		HTMLElement.prototype.insertAfter=function(element){
+			let next=this.nextElementSibling;
+			let parent=this.parentNode;
+			if(next){
+				parent.insertBefore(element,next);
+			}else{
+				parent.appendChild(element);
+			}
+		}
+		HTMLElement.prototype.prependChild=function(element){
+			let first=this.firstElementChild;
+			if(first){
+				this.insertBefore(element,first);
+			}else{
+				this.appendChild(element);
+			}
+		}
+		HTMLElement.prototype.appendTo=function(element){
+			element.appendChild(this);
+		}
+		HTMLElement.prototype.prependTo=function(element){
+			element.prependChild(this);
+		}
+		HTMLElement.prototype.empty=function(element){
+			this.innerHTML='';
+		}
+	</script>
+</body>
+</html>
